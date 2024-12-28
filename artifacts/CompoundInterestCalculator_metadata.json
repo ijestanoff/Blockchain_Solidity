@@ -1,0 +1,138 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "CannotBeSplitEvenly",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidRating",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidSalary",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "principal",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "year_s",
+						"type": "uint256"
+					}
+				],
+				"name": "calculateCompoundInterest",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "salary",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "rating",
+						"type": "int256"
+					}
+				],
+				"name": "calculatePaycheck",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "paycheck",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "totalAmount",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "numPeople",
+						"type": "int256"
+					}
+				],
+				"name": "splitExpense",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "divideAmount",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"CompaundInterestCalculator.sol": "CompoundInterestCalculator"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"CompaundInterestCalculator.sol": {
+			"keccak256": "0x40b47ce31a4f2663369286c2b3e3102aa6634ab8ec071d199681900f99e65d07",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bc2a97edf6c451425db82ef892256fde06413ae0cd73be4d266c9228bdb6f014",
+				"dweb:/ipfs/QmYBcnhGoDNnUddEGoWfEoCKpwEJsxaGrUmg58xFfFEPsd"
+			]
+		}
+	},
+	"version": 1
+}
