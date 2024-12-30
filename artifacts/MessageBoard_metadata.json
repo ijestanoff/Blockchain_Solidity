@@ -8,17 +8,35 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					}
+				],
+				"name": "keepMessages",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "arr",
+				"name": "messages",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "string",
 						"name": "",
-						"type": "uint256"
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -27,20 +45,20 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256[]",
-						"name": "_arr",
-						"type": "uint256[]"
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
 					}
 				],
-				"name": "checkArr",
+				"name": "previewMessage",
 				"outputs": [
 					{
-						"internalType": "uint256[]",
+						"internalType": "string",
 						"name": "",
-						"type": "uint256[]"
+						"type": "string"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "pure",
 				"type": "function"
 			}
 		],
@@ -57,7 +75,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Reference.sol": "ArrayMy"
+			"MessageBoard.sol": "MessageBoard"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -71,12 +89,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Reference.sol": {
-			"keccak256": "0x554f135974b145d8c04d467a7f1b2d537d992c76165d8fe71a59206c4a0f952d",
+		"MessageBoard.sol": {
+			"keccak256": "0x7340d121a53848e2ed4a422148de70c1cfd89b75d47d2ca2edee67e4e2be2bee",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ef553dc7031292a0236fc4cfd6e221d781d4228db5bf9ca2d9c00eba95a55536",
-				"dweb:/ipfs/Qmc69KytK2EzXcYSjMWfeNar69pufgHr8tVQnM2zezyfaK"
+				"bzz-raw://0dcd128f09f2eaed9756e69f81dd25301115cec087f36a95a77e9eb09fb8ca4a",
+				"dweb:/ipfs/QmV8GrxozbNF9C4LJybESkG9aF88qXBLaCBKQkPnekdYAU"
 			]
 		}
 	},

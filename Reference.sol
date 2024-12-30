@@ -4,7 +4,7 @@ pragma solidity 0.8.28;
 struct Vote {
     address shareholder;
     uint256 shares;
-    // uint256 timestamp;
+    uint256 timestamp;
     // TestA a;
     // mapping (uint256 => uint256) testaa;
 }
@@ -42,15 +42,26 @@ contract Test {
 
 contract Crowdfundings {
     mapping(address => uint256) public shares;
-    // mapping(address => uint256) public shares2;
     Vote[] public votes;
+    // mapping(address => uint256) public shares2;
+    uint256 public sharePrice;
+    uint256 public totalShares;
+
+    constructor(uint256 _sharePrice) {
+        sharePrice = _sharePrice;
+    }
+
+    function addShares() external payable {
+        totalShares += msg.value;
+        shares[msg.sender] += msg.value;
+    }
 
     function vote(address holder) external {
         votes.push(
             Vote({
                 shareholder: holder,
-                shares: shares[holder]
-                // timestamp: block.timestamp
+                shares: shares[holder],
+                timestamp: block.timestamp
             })
         );
         // emit NewVote(shareholder, 1);
@@ -60,12 +71,19 @@ contract Crowdfundings {
         // totalShares += amount;
         shares[receiver] += amount;
     }
+
+    function getUserShares(address user) external view returns (uint256) {
+        return shares[user];
+    }
 }
 
 contract ArrayMy {
     uint256[] public arr = [1, 2, 3, 4, 5];
 
-    function checkArr(uint256[] calldata _arr) external returns (uint256[] memory) {
+    function checkArr(uint256[] calldata _arr)
+        external
+        returns (uint256[] memory)
+    {
         arr = _arr;
 
         return arr;
