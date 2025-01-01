@@ -44,12 +44,22 @@ contract DigitalLibrary {
         id++;
     }
 
-    function addLibrarian(uint256 _id, address _librarian) public{
+    function addLibrarian(uint256 _id, address _librarian)
+        public
+        returns (EBook memory book)
+    {
         libraryBooks[_id].librarians.push(_librarian);
         if (libraryBooks[_id].primaryLibrarian != msg.sender) {
             revert YouAreNotAuthor();
         }
+        return libraryBooks[_id];
+    }
+
+    function getLibrarians(uint256 _id, uint256 _index) public view returns (address) {
+        return libraryBooks[_id].librarians[_index];
     }
 }
 
-
+//  0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
+//  0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2
+//  0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB
