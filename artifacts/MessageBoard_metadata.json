@@ -90,11 +90,11 @@
 	},
 	"sources": {
 		"MessageBoard.sol": {
-			"keccak256": "0x7340d121a53848e2ed4a422148de70c1cfd89b75d47d2ca2edee67e4e2be2bee",
+			"keccak256": "0x4fd1d23fc3d120a8dc8b4a308dc00b86e812d94b44537dd2de115339d8d2226b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0dcd128f09f2eaed9756e69f81dd25301115cec087f36a95a77e9eb09fb8ca4a",
-				"dweb:/ipfs/QmV8GrxozbNF9C4LJybESkG9aF88qXBLaCBKQkPnekdYAU"
+				"bzz-raw://91f774c02df6daf7647926c941e67fa28842f77fb3252e02d45ff85c6106bcdb",
+				"dweb:/ipfs/QmZw6XUPLfRLScnw2adsuGEUJsSCYQjHV7c521WcjUgP4M"
 			]
 		}
 	},

@@ -40,6 +40,8 @@ contract Test {
     }
 }
 
+error InsuficientAmount();
+
 contract Crowdfundings {
     mapping(address => uint256) public shares;
     Vote[] public votes;
@@ -51,9 +53,17 @@ contract Crowdfundings {
         sharePrice = _sharePrice;
     }
 
-    function addShares() external payable {
-        totalShares += msg.value;
-        shares[msg.sender] += msg.value;
+    function buyShares() external payable {
+        if (msg.value < sharePrice) {
+            revert InsuficientAmount();
+        }
+
+        if (msg.value % sharePrice > 0) {
+            revert InsuficientAmount();
+        }
+        uint256 sharesToReceive = msg.value / sharePrice;
+        totalShares += sharesToReceive;
+        shares[msg.sender] += sharesToReceive;
     }
 
     function vote(address holder) external {

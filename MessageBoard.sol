@@ -4,11 +4,11 @@ pragma solidity 0.8.28;
 contract MessageBoard {
     mapping (address => string[]) public messages;
 
-    function keepMessages(string memory message) external{
+    function keepMessages(string calldata message) external{
         messages[msg.sender].push(message);
     }
 
-    function previewMessage(string memory message) external pure returns (string memory) {
+    function previewMessage(string calldata message) external pure returns (string memory) {
         return string(abi.encodePacked("Draft: ", message));
     }
 }
