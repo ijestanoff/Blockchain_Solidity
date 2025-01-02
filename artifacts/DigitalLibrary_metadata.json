@@ -18,14 +18,19 @@
 			},
 			{
 				"inputs": [],
-				"name": "YouAreNotAuthor",
+				"name": "You_Are_Not_Author",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "You_Are_Not_Librarian",
 				"type": "error"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_id",
+						"name": "_bookId",
 						"type": "uint256"
 					},
 					{
@@ -37,51 +42,9 @@
 				"name": "addLibrarian",
 				"outputs": [
 					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "title",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "author",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "publicationDate",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "expirationDate",
-								"type": "uint256"
-							},
-							{
-								"internalType": "enum State",
-								"name": "status",
-								"type": "uint8"
-							},
-							{
-								"internalType": "address",
-								"name": "primaryLibrarian",
-								"type": "address"
-							},
-							{
-								"internalType": "address[]",
-								"name": "librarians",
-								"type": "address[]"
-							},
-							{
-								"internalType": "uint256",
-								"name": "readCount",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct EBook",
-						"name": "book",
-						"type": "tuple"
+						"internalType": "address[]",
+						"name": "librarians",
+						"type": "address[]"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -109,21 +72,40 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_id",
+						"name": "_bookId",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "_index",
+						"name": "_addExpirationDays",
+						"type": "uint256"
+					}
+				],
+				"name": "extendExpirationDate",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bookId",
 						"type": "uint256"
 					}
 				],
 				"name": "getLibrarians",
 				"outputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
+						"internalType": "address[]",
+						"name": "librarians",
+						"type": "address[]"
 					}
 				],
 				"stateMutability": "view",
@@ -133,45 +115,45 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "_bookId",
 						"type": "uint256"
 					}
 				],
-				"name": "libraryBooks",
+				"name": "getLibraryBook",
 				"outputs": [
 					{
 						"internalType": "string",
-						"name": "title",
+						"name": "title__",
 						"type": "string"
 					},
 					{
 						"internalType": "string",
-						"name": "author",
+						"name": "author__",
 						"type": "string"
 					},
 					{
 						"internalType": "uint256",
-						"name": "publicationDate",
+						"name": "publicationDate__",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "expirationDate",
+						"name": "expirationDate__",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum State",
-						"name": "status",
+						"name": "status__",
 						"type": "uint8"
 					},
 					{
-						"internalType": "address",
-						"name": "primaryLibrarian",
-						"type": "address"
+						"internalType": "address[]",
+						"name": "librarians__",
+						"type": "address[]"
 					},
 					{
 						"internalType": "uint256",
-						"name": "readCount",
+						"name": "readCount__",
 						"type": "uint256"
 					}
 				],
@@ -207,11 +189,11 @@
 	},
 	"sources": {
 		"DigitalLibrary.sol": {
-			"keccak256": "0xa3f333cf6154ea74c768b1fc9381cd2543e17f7989efd32ed78a9a3a1e7fd0a8",
+			"keccak256": "0x6a742c5fe04fbe51850d56896436b2de1f4f19670637a2841138df3076ceab82",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://addfec820ab6d470373974c3e11b97c37ad6421f98335420aa588258c531fa8c",
-				"dweb:/ipfs/Qma1PQHEgB5L34cFs4DpWSnoTbkncAX84XeEJMkFtUb6sp"
+				"bzz-raw://45c2d1925501594e22e9172b3f87e1dd4cc338ee546567f1dba9bc022550337b",
+				"dweb:/ipfs/QmWTfoK4Qv85jjLwXU6v57HN9J1TDnvJoHNAHBkNWksNZJ"
 			]
 		}
 	},
