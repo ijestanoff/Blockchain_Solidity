@@ -18,6 +18,11 @@
 			},
 			{
 				"inputs": [],
+				"name": "Invalid_Status",
+				"type": "error"
+			},
+			{
+				"inputs": [],
 				"name": "You_Are_Not_Author",
 				"type": "error"
 			},
@@ -45,6 +50,54 @@
 						"internalType": "address[]",
 						"name": "librarians",
 						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bookId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_status",
+						"type": "string"
+					}
+				],
+				"name": "changeStatus",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bookId",
+						"type": "uint256"
+					}
+				],
+				"name": "checkExpiration",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "status__",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -100,25 +153,6 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getLibrarians",
-				"outputs": [
-					{
-						"internalType": "address[]",
-						"name": "librarians",
-						"type": "address[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_bookId",
-						"type": "uint256"
-					}
-				],
 				"name": "getLibraryBook",
 				"outputs": [
 					{
@@ -142,9 +176,9 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "enum State",
+						"internalType": "string",
 						"name": "status__",
-						"type": "uint8"
+						"type": "string"
 					},
 					{
 						"internalType": "address[]",
@@ -182,18 +216,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"DigitalLibrary.sol": {
-			"keccak256": "0x6a742c5fe04fbe51850d56896436b2de1f4f19670637a2841138df3076ceab82",
+			"keccak256": "0x9b190008c490bf5f305cd1fb33658b5e95da0f31f0c066905c0fedb6ccf00262",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://45c2d1925501594e22e9172b3f87e1dd4cc338ee546567f1dba9bc022550337b",
-				"dweb:/ipfs/QmWTfoK4Qv85jjLwXU6v57HN9J1TDnvJoHNAHBkNWksNZJ"
+				"bzz-raw://42a5ae64e3076a5696bba7a87bf7eb74b27924aac7b574d33ab513d807a5a101",
+				"dweb:/ipfs/QmUDkDfCSW6CsfbuUY2dWBJ8J8XW3uwptHB92DP3H8Ld7t"
 			]
 		}
 	},

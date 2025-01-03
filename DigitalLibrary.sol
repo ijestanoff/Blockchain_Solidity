@@ -20,6 +20,7 @@ struct EBook {
 
 error You_Are_Not_Author();
 error You_Are_Not_Librarian();
+error Invalid_Status();
 
 contract DigitalLibrary {
     uint256 private id;
@@ -38,19 +39,25 @@ contract DigitalLibrary {
             string memory author__,
             uint256 publicationDate__,
             uint256 expirationDate__,
-            State status__,
+            string memory status__,
             address[] memory librarians__,
             uint256 readCount__)
+            // address primaryLibrarian__)
     {
-        require(libraryBooks[_bookId].primaryLibrarian == msg.sender);
+        // require(libraryBooks[_bookId].primaryLibrarian == msg.sender);
+        if (libraryBooks[_bookId].status == State.Active) status__ = "Active";
+        if (libraryBooks[_bookId].status == State.Outdated) status__ = "Outdated";
+        if (libraryBooks[_bookId].status == State.Archived) status__ = "Archived";
+        // string[3] memory statusString = ["Active","Outdated","Archived"];
         return (
             libraryBooks[_bookId].title,
             libraryBooks[_bookId].author,
             libraryBooks[_bookId].publicationDate,
             libraryBooks[_bookId].expirationDate,
-            libraryBooks[_bookId].status,
+            status__,
             libraryBooks[_bookId].librarians,
             libraryBooks[_bookId].readCount
+            // libraryBooks[_bookId].primaryLibrarian
         );
     }
 
@@ -80,14 +87,6 @@ contract DigitalLibrary {
         return libraryBooks[_bookId].librarians;
     }
 
-    function getLibrarians(uint256 _bookId)
-        public
-        view
-        returns (address[] memory librarians)
-    {
-        return libraryBooks[_bookId].librarians;
-    }
-
     function extendExpirationDate(uint256 _bookId, uint256 _addExpirationDays)
         public
         returns (bool success)
@@ -97,8 +96,34 @@ contract DigitalLibrary {
             if (libraryBooks[_bookId].librarians[i] == msg.sender) {
                 return true;
             }
-            revert You_Are_Not_Librarian();
         }
+        if (libraryBooks[_bookId].primaryLibrarian == msg.sender) {
+            return true;
+        }
+        revert You_Are_Not_Librarian();
+    }
+
+    function changeStatus(uint256 _bookId, string calldata _status) public returns (bool success){
+        if (msg.sender == libraryBooks[_bookId].primaryLibrarian) {
+            if (keccak256(abi.encodePacked(_status)) == keccak256(abi.encodePacked("Active"))) {
+                libraryBooks[_bookId].status = State.Active;
+            } else if (keccak256(abi.encodePacked(_status)) == keccak256(abi.encodePacked("Outdated"))) {
+                libraryBooks[_bookId].status = State.Outdated;
+            } else if (keccak256(abi.encodePacked(_status)) == keccak256(abi.encodePacked("Archived"))) {
+                libraryBooks[_bookId].status = State.Archived;
+            } else revert Invalid_Status();
+            return true;
+        } else revert You_Are_Not_Author();
+    }
+
+    function checkExpiration(uint256 _bookId) public returns (string memory status__, uint timestamp){
+        libraryBooks[_bookId].readCount++;
+        if (libraryBooks[_bookId].expirationDate >= block.timestamp) {
+            status__ = "Active";
+        } else if (libraryBooks[_bookId].expirationDate == 0) {
+            status__ = "Missed";
+        } else status__ = "Outdated";
+        timestamp = block.timestamp;
     }
 }
 
