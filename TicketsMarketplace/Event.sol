@@ -5,27 +5,34 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 error NoMoreTickets();
+
 contract Event is ERC721, Ownable {
     uint256 private _nextTokenId;
+
     // date is timestamp
     uint256 public immutable date;
+    address public immutable organizer;
+
     string public location;
     uint256 ticketAvailability;
 
-
-    constructor(address eventOrganizer, string memory eventName, uint256 date_, string memory location_)
-        ERC721(eventName, "")
-        Ownable(eventOrganizer)
-    {
+    constructor(
+        address minter,
+        string memory eventName,
+        uint256 date_,
+        string memory location_,
+        address organizer_
+    ) ERC721(eventName, "") Ownable(minter) {
         date = date_;
         location = location_;
-        // ticketAvailability = ; 
+        organizer = organizer_;
     }
 
     function safeMint(address to) public onlyOwner {
-        if(_nextTokenId > ticketAvailability) {
+        if (_nextTokenId >= ticketAvailability) {
             revert NoMoreTickets();
         }
+
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
     }
