@@ -6,6 +6,17 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "feeCollector",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [],
 				"name": "AlreadyListed",
 				"type": "error"
@@ -25,6 +36,29 @@
 				"inputs": [],
 				"name": "MustBeOrganizer",
 				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ProfitDistributionFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "WrongBuyingOption",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "event_",
+						"type": "address"
+					}
+				],
+				"name": "buyTicket",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -94,6 +128,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "feeCollector",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -119,6 +166,38 @@
 				"name": "listEvent",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "profits",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "withdrawProfit",
+				"outputs": [],
+				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
@@ -278,11 +357,11 @@
 			]
 		},
 		"TicketsMarketplace/Marketplace.sol": {
-			"keccak256": "0x3d320e43668e74a02b9e12cb8aa07190feeeb8eb5bea06d85dc8c52934b40c52",
+			"keccak256": "0xd2ba1dcbab0fdbe79baffe87f6065a2820dfc4948e1498079b9b12bbef99fcb1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7fcfcd153cac8908eec656b047e035e0f1cbd2ea7ebb727bd3b084571d7acbcc",
-				"dweb:/ipfs/QmNbx4GYJBLRyDKFE8ohU9bv69mPEDPieadSdmsctZzG9c"
+				"bzz-raw://fb332f45a8b9e85bf0d3b3c44b675f141771b90a0ee344fed3b6140da465d34c",
+				"dweb:/ipfs/Qmed6PLpUMun2jj1hRWAe245cDHqQkL1Mct6NsCMwefSCE"
 			]
 		}
 	},
