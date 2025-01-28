@@ -29,7 +29,7 @@ contract Event is ERC721, Ownable {
     }
 
     function safeMint(address to) public onlyOwner {
-        if (_nextTokenId >= ticketAvailability) {
+        if (_nextTokenId == ticketAvailability) {
             revert NoMoreTickets();
         }
 

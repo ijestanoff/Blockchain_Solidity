@@ -6,6 +6,27 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"name": "AlreadyListed",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "info",
+						"type": "string"
+					}
+				],
+				"name": "InvalidInput",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MustBeOrganizer",
+				"type": "error"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -21,9 +42,81 @@
 						"internalType": "string",
 						"name": "location",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum BuyingOption",
+						"name": "saleType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "salesEnds",
+						"type": "uint256"
 					}
 				],
 				"name": "createEvent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "events",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "ticketPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum BuyingOption",
+						"name": "saleType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "salesEnds",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newEvent",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum BuyingOption",
+						"name": "saleType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "salesEnds",
+						"type": "uint256"
+					}
+				],
+				"name": "listEvent",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -177,19 +270,19 @@
 			]
 		},
 		"TicketsMarketplace/Event.sol": {
-			"keccak256": "0x2fbff9a2da5995dfa69640923a22891c430696aed13512335bf169eb6b901a88",
+			"keccak256": "0xf82fa24b51be70d470d4870a8f96dda08adf939c9ca268d739943b197de0ba35",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://98d033ee937b79cfa7e016628e30951c8b45b98c59f654a541f71faac1274205",
-				"dweb:/ipfs/QmPT1qzH3ssu6J2vifmhupm1qYJtrViR3K1VYhYsc1iPM7"
+				"bzz-raw://34fc6c8bda4a9511551f71e99cc61e7cd61000ad4b0a56ce6ba9cb8e2614f67b",
+				"dweb:/ipfs/QmRooYHfCzDR9fQstfVygRLaDNVAFkNV8eV2ZGxM7eu1p8"
 			]
 		},
 		"TicketsMarketplace/Marketplace.sol": {
-			"keccak256": "0x51342ca59ad8e0314563a5f014406b782e44a48a4fb4c6ab911e1c8d1662afeb",
+			"keccak256": "0x3d320e43668e74a02b9e12cb8aa07190feeeb8eb5bea06d85dc8c52934b40c52",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9d21199cc16fd81d87c0a20f481e92ab60da704b2a02cb02a38bd092dd0261ad",
-				"dweb:/ipfs/QmVYLy7SCEBduVJxeWzfz4XYrLWrPqgUt48gs6qFBQ342T"
+				"bzz-raw://7fcfcd153cac8908eec656b047e035e0f1cbd2ea7ebb727bd3b084571d7acbcc",
+				"dweb:/ipfs/QmNbx4GYJBLRyDKFE8ohU9bv69mPEDPieadSdmsctZzG9c"
 			]
 		}
 	},
