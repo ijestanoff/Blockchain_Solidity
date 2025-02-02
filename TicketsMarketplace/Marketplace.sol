@@ -21,16 +21,19 @@ struct EventData {
 }
 
 contract Marketplace {
-    uint256 constant MIN_SALE_PERIOD = 24 hours;
-    uint256 constant SALE_FEE = 0.1 ether;
+    uint256 public constant MIN_SALE_PERIOD = 24 hours;
+    uint256 public constant SALE_FEE = 0.1 ether;
 
     address public immutable feeCollector;
 
     mapping(address => EventData) public events;
-    mapping (address => uint256) public profits;
+    mapping(address => uint256) public profits;
+    mapping (address => mapping (uint256 =>bool)) public secondMarketListings;
 
-    constructor(address feeCollector){
-        feeCollector = feeCollector;
+    event NewEvent(address indexed newEvent);
+
+    constructor(address feeCollector_) {
+        feeCollector = feeCollector_;
     }
 
     function createEvent(
@@ -39,11 +42,23 @@ contract Marketplace {
         string memory location,
         uint256 ticketPrice,
         BuyingOption saleType,
-        uint256 salesEnds
+        uint256 salesEnds,
+        bool isPriceCapSet_,
+        address whiteListedAddress_
     ) external {
         address newEvent = address(
-            new Event(address(this), eventName, date, location, msg.sender)
+            new Event(
+                address(this),
+                eventName,
+                date,
+                location,
+                msg.sender,
+                isPriceCapSet_,
+                whiteListedAddress_
+            )
         );
+
+        emit NewEvent(newEvent);
 
         _listEvent(newEvent, ticketPrice, saleType, salesEnds);
     }
@@ -57,7 +72,7 @@ contract Marketplace {
         if (msg.sender != Event(newEvent).organizer()) {
             revert MustBeOrganizer();
         }
-        
+
         _listEvent(newEvent, ticketPrice, saleType, salesEnds);
     }
 
@@ -68,15 +83,15 @@ contract Marketplace {
         uint256 salesEnds
     ) internal {
         //TODO: Ensure External Event contract is compatible with IEvent
-        if (salesEnds > block.timestamp + MIN_SALE_PERIOD) {
+        if (salesEnds < block.timestamp + MIN_SALE_PERIOD) {
             revert InvalidInput("salesEnd is invalid");
         }
         if (events[newEvent].salesEnds != 0) {
             revert AlreadyListed();
         }
 
-        if (events[newEvent].ticketPrice < SALE_FEE) {
-            revert InvalidInput("ticketPrice >= sale fee");
+        if (ticketPrice < SALE_FEE) {
+            revert InvalidInput("ticketPrice >= SALE_FEE");
         }
 
         events[newEvent] = EventData({
@@ -86,17 +101,33 @@ contract Marketplace {
         });
     }
 
-    function buyTicket(address event_) external payable{
-        if(events[event_].saleType != BuyingOption.FixedPrice) {
+    function buyOnSecondMarket(address event_, uint256 ticketId, address owner) external payable {
+        if (events[event_].saleType != BuyingOption.FixedPrice) {
             revert WrongBuyingOption();
         }
 
-        if(msg.value != events[event_].ticketPrice) {
+        if (msg.value != events[event_].ticketPrice) {
             revert InvalidInput("wrong value");
         }
 
         profits[Event(event_).organizer()] += msg.value - SALE_FEE;
         profits[feeCollector] += SALE_FEE;
+
+        Event(event_).safeTransferFrom(owner, msg.sender, ticketId);
+    }
+
+    function buyTicket(address event_) external payable {
+        if (events[event_].saleType != BuyingOption.FixedPrice) {
+            revert WrongBuyingOption();
+        }
+
+        if (msg.value != events[event_].ticketPrice) {
+            revert InvalidInput("wrong value");
+        }
+
+        profits[Event(event_).organizer()] += msg.value - SALE_FEE;
+        profits[feeCollector] += SALE_FEE;
+
         Event(event_).safeMint(msg.sender);
     }
 
@@ -104,8 +135,10 @@ contract Marketplace {
         uint256 profit = profits[msg.sender];
         profits[msg.sender] = 0;
         (bool success, ) = to.call{value: profit}("");
-        if(!success) {
+        if (!success) {
             revert ProfitDistributionFailed();
         }
     }
+
+
 }

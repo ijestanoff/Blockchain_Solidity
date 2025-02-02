@@ -9,7 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "feeCollector",
+						"name": "feeCollector_",
 						"type": "address"
 					}
 				],
@@ -46,6 +46,68 @@
 				"inputs": [],
 				"name": "WrongBuyingOption",
 				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newEvent",
+						"type": "address"
+					}
+				],
+				"name": "NewEvent",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "MIN_SALE_PERIOD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SALE_FEE",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "event_",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "buyOnSecondMarket",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -91,6 +153,16 @@
 						"internalType": "uint256",
 						"name": "salesEnds",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isPriceCapSet_",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "whiteListedAddress_",
+						"type": "address"
 					}
 				],
 				"name": "createEvent",
@@ -182,6 +254,30 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "secondMarketListings",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -349,19 +445,19 @@
 			]
 		},
 		"TicketsMarketplace/Event.sol": {
-			"keccak256": "0xf82fa24b51be70d470d4870a8f96dda08adf939c9ca268d739943b197de0ba35",
+			"keccak256": "0x7c268716413efea1da5e6ae33e5d735c16bc69a0127d2dbe529387068facbb5a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://34fc6c8bda4a9511551f71e99cc61e7cd61000ad4b0a56ce6ba9cb8e2614f67b",
-				"dweb:/ipfs/QmRooYHfCzDR9fQstfVygRLaDNVAFkNV8eV2ZGxM7eu1p8"
+				"bzz-raw://88ac0e2009186a0ce2c90863ed8437b94f988684583c76c0ee609166bd01ce78",
+				"dweb:/ipfs/QmSDSaHDSf2VmdytwhT6amM1iVJ5HEendVRPHx8V5keWUz"
 			]
 		},
 		"TicketsMarketplace/Marketplace.sol": {
-			"keccak256": "0xd2ba1dcbab0fdbe79baffe87f6065a2820dfc4948e1498079b9b12bbef99fcb1",
+			"keccak256": "0xab9cd37f8359ee4e8bde32704297a8b68a5a3550c8233c082a1fc10a1e9a85ba",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fb332f45a8b9e85bf0d3b3c44b675f141771b90a0ee344fed3b6140da465d34c",
-				"dweb:/ipfs/Qmed6PLpUMun2jj1hRWAe245cDHqQkL1Mct6NsCMwefSCE"
+				"bzz-raw://2edd539ce511b27358b0ab2bbaeeb722265a78f793851f5541bfef4ff267ebaa",
+				"dweb:/ipfs/QmU2Bg4rhfp9HHgfsFbLWTeQafU1NM3NQN2GRmVWPPQbgN"
 			]
 		}
 	},
